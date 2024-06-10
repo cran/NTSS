@@ -25,7 +25,8 @@
 #' The argument \code{verbose} determines if auxiliary information and plots should be provided.
 #'
 #' @import spatstat
-#' @import spatstat.explore
+#' @importFrom spatstat.explore Kinhom edge.Trans Gcross rmax.rule Kcross density.ppp Smooth
+#' @importFrom spatstat.univar stieltjes
 #' @import stats
 #' @import GET
 #'
@@ -88,7 +89,8 @@ PP.test <- function(X, Y, N.shifts=999, radius, correction, statistic, rmax.K=NU
 
       values.simulated <- rep(NA, times=N.shifts+1)
       fun <- Gcross(Z, correction	=c("km"))
-      values.simulated[1] <- stieltjes(function(x){x}, fun)$km
+      sf <- stepfun(x=fun$r, y=c(0,fun$km), right=FALSE)
+      values.simulated[1] <- as.numeric(stieltjes(function(x){x}, sf))
 
       test.stat.value <- values.simulated[1]
       names(test.stat.value) <- "ED_12"
@@ -101,7 +103,8 @@ PP.test <- function(X, Y, N.shifts=999, radius, correction, statistic, rmax.K=NU
 
         Z.shift <- rshift.ppp(Z, which='X', radius=radius, edge="torus")
         fun <- Gcross(Z.shift, correction	=c("km"))
-        values.simulated[k+1] <- stieltjes(function(x){x}, fun)$km
+        sf <- stepfun(x=fun$r, y=c(0,fun$km), right=FALSE)
+        values.simulated[k+1] <- as.numeric(stieltjes(function(x){x}, sf))
       }
 
       test.rank <- rank(values.simulated)[1]

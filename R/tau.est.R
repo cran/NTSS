@@ -30,7 +30,6 @@
 #' can be empty if no nuisance covariates are considered.
 #'
 #' @import spatstat
-#' @import spatstat.explore
 #' @import spatstat.model
 #' @import stats
 #' @import ks

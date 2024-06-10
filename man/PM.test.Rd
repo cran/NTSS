@@ -22,13 +22,13 @@ based on the comparison of the mark K-function and the K-function of the underly
 see Guan (2006).
 }
 \details{
-The test was proposed in Guan (2006) and used in Dvořák et al. (2022) as one of the tools 
+The test was proposed in Guan (2006) and used in Dvořák et al. (2022) as one of the tools
 to determine the dependence structure between points, marks and a covariate in a marked point process setting.
 The marked point process is assumed to be stationary here.
 
 The observed marked point pattern should be supplied using the argument \code{X}.
 The upper limit of the domain for the (marked) K-function used for constructing the test statistic
-is given by the argument \code{R}. Furthermore, the variance used for constructing 
+is given by the argument \code{R}. Furthermore, the variance used for constructing
 the test statistic is determined using a fitted covariance model for the mark field.
 In the given implementation, the exponential model for the covariance is assumed.
 The model parameters are estimated by fitting the corresponding parametric model
